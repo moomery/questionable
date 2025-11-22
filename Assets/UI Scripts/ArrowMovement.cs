@@ -1,16 +1,20 @@
+using Mono.Cecil;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ArrowMovement : MonoBehaviour
 {
     // Update is called once per frame
-    // void Update()
-    // {
-    //     Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    void Update()
+    {
+        Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
 
-    //     Vector2 direction = mouseWorldPosition - (Vector2)transform.position;
+        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPos);
 
-    //     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Vector2 direction = mouseWorldPosition - (Vector2)transform.position;
 
-    //     transform.rotation = Quaternion.Euler(0f, 0f, angle);
-    // }
+        float angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90; 
+
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+    }
 }

@@ -1,16 +1,43 @@
+
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 
 public class SelectionManager : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+{   private GameObject selectedObject;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            UnityEngine.Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
+            //get mouse position global
+            UnityEngine.Vector2 mousePosition = Camera.main.ScreenToWorldPoint(mouseScreenPos);
+
+            //raycast
+            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+            if (hit.collider != null)
+            {
+                if (selectedObject != null && selectedObject != hit.collider.gameObject)
+                {
+                    Debug.Log ("Deselected: " + selectedObject.name);
+                }
+                //select new object
+                selectedObject = hit.collider.gameObject;
+                selectedObject.GetComponent<SpriteRenderer>().color = Color.red;
+                Debug.Log("Selected: " + selectedObject.name);
+            }
+            else
+            {
+                if (selectedObject != null)
+                {
+                    Debug.Log("Deselected: " + selectedObject.name);
+                    selectedObject.GetComponent<SpriteRenderer>().color = Color.white;
+                    selectedObject = null;
+                }
+            }
+
+        }
+   
     }
 }
