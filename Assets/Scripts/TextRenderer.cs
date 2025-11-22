@@ -24,7 +24,7 @@ public class TextRenderer : MonoBehaviour
         InstantiateText("mybox", "Test.", 0, 0, 0);
         InstantiateText("mybox2", "Another test.", 18, 0, 0, 100, 50);
 
-        SayOnObject("squaretext", "HEY I'M ON A SQUARE!!!", 18);
+        SayOnObject(PARENT_TEST, "squaretext", "HEY I'M ON A SQUARE!!!", 18);
 
         DeleteText("mybox");
         DeleteText("mybox2");
@@ -43,15 +43,31 @@ public class TextRenderer : MonoBehaviour
         DEFAULT_TEXT_OBJECT.text = text;
     }
 
-    void SayOnObject(string id, string text, int size)
+
+    public void SayOnObject(GameObject parent, string id, string text, int size)
     {
+
+        if(textObjects.ContainsKey(id))
+        {
+            UpdateText(id, text);
+            return;
+        }
+
         GameObject a = new GameObject(id);
         TextMeshProUGUI t = a.AddComponent<TextMeshProUGUI>();
 
-        a.transform.SetParent(PARENT_TEST.transform, false);
+        a.transform.SetParent(parent.transform, false);
+
 
         RectTransform r = a.GetComponent<RectTransform>();
-        r.anchoredPosition = new Vector2(r.sizeDelta.x/2, -size); // Account for the size of the bounding box.
+        int selfOffsetX = (int)r.sizeDelta.x/2;
+        int selfOffsetY = -size;
+
+        // TODO: Translate w-r-t parent's size.
+        SpriteRenderer s = parent.GetComponent<SpriteRenderer>();
+        //int parentOffsetX = PARENT_TEST.transform.
+
+        r.anchoredPosition = new Vector2(selfOffsetX, selfOffsetY); // Account for the size of the bounding box.
 
 
         t.text = text;
@@ -63,7 +79,7 @@ public class TextRenderer : MonoBehaviour
     }
 
     // Add text at a specific location on the canvas. (x, y) is the top left corner. (w, h) is the size of the bounding box.
-    void InstantiateText(string id, string text, int size, int x, int y, int w, int h)
+    public void InstantiateText(string id, string text, int size, int x, int y, int w, int h)
     {
         GameObject a = new GameObject(id);
         TextMeshProUGUI t = a.AddComponent<TextMeshProUGUI>();
@@ -83,7 +99,7 @@ public class TextRenderer : MonoBehaviour
     }
 
     // Add text at a specific location on the canvas. (x, y) is the top left corner.
-    void InstantiateText(string id, string text, int size, int x, int y)
+    public void InstantiateText(string id, string text, int size, int x, int y)
     {
         GameObject a = new GameObject(id);
         TextMeshProUGUI t = a.AddComponent<TextMeshProUGUI>();
@@ -102,7 +118,7 @@ public class TextRenderer : MonoBehaviour
     }
 
     // Add text to a pre-existing game object. TODO: Add offsets.
-    void InstantiateText(string id, string text, int size, GameObject parent)
+    public void InstantiateText(string id, string text, int size, GameObject parent)
     {
         GameObject a = new GameObject(id);
         TextMeshProUGUI t = a.AddComponent<TextMeshProUGUI>();
@@ -117,13 +133,13 @@ public class TextRenderer : MonoBehaviour
 
     }
 
-    void UpdateText(string id, string text)
+    public void UpdateText(string id, string text)
     {
         TextMeshProUGUI t = textObjects[id].GetComponent<TextMeshProUGUI>();
         t.text = text;
     }
 
-    void DeleteText(string id)
+    public void DeleteText(string id)
     {
         Destroy(textObjects[id]);
         textObjects.Remove(id);
