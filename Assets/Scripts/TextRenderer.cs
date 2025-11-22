@@ -9,6 +9,8 @@ public class TextRenderer : MonoBehaviour
     public int DEFAULT_FONT_SIZE = 18;
     Dictionary<string, GameObject> textObjects = new Dictionary<string, GameObject>();
 
+    public GameObject PARENT_TEST;
+
     public Canvas CURRENT_CANVAS;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,8 +21,14 @@ public class TextRenderer : MonoBehaviour
         DEFAULT_TEXT_OBJECT.font = f;
 
         Say("default text default text default text default text default text default text ");
-        InstantiateText("mybox", "Test.", 18, -50, 0);
+        InstantiateText("mybox", "Test.", 0, 0, 0);
         InstantiateText("mybox2", "Another test.", 18, 0, 0, 100, 50);
+
+        SayOnObject("squaretext", "HEY I'M ON A SQUARE!!!", 18);
+
+        DeleteText("mybox");
+        DeleteText("mybox2");
+        UpdateText("squaretext", ".!");
 
     }
 
@@ -33,6 +41,25 @@ public class TextRenderer : MonoBehaviour
     void Say(string text)
     {
         DEFAULT_TEXT_OBJECT.text = text;
+    }
+
+    void SayOnObject(string id, string text, int size)
+    {
+        GameObject a = new GameObject(id);
+        TextMeshProUGUI t = a.AddComponent<TextMeshProUGUI>();
+
+        a.transform.SetParent(PARENT_TEST.transform, false);
+
+        RectTransform r = a.GetComponent<RectTransform>();
+        r.anchoredPosition = new Vector2(r.sizeDelta.x/2, -size); // Account for the size of the bounding box.
+
+
+        t.text = text;
+        t.fontSize = size;
+        t.font = f;
+
+        textObjects.Add(id, a);
+
     }
 
     // Add text at a specific location on the canvas. (x, y) is the top left corner. (w, h) is the size of the bounding box.
