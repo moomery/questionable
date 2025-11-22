@@ -23,6 +23,12 @@ public class SelectionManager : MonoBehaviour
                     Debug.Log ("Deselected: " + selectedObject.name);
                 }
                 //select new object
+                if(selectedObject != null)
+                {
+                    // "Un-select" current object
+                    selectedObject.GetComponent<SpriteRenderer>().color = Color.white;
+                }
+
                 selectedObject = hit.collider.gameObject;
                 selectedObject.GetComponent<SpriteRenderer>().color = Color.red;
                 Debug.Log("Selected: " + selectedObject.name);
