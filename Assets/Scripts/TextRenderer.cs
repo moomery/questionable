@@ -59,16 +59,24 @@ public class TextRenderer : MonoBehaviour
         a.transform.SetParent(parent.transform, false);
 
 
+
         RectTransform r = a.GetComponent<RectTransform>();
-        int selfOffsetX = (int)r.sizeDelta.x/2;
-        int selfOffsetY = -size;
+        r.pivot = new Vector2(0.5f, 0.5f);
+        r.anchorMin = new Vector2(0.5f, 0.5f);
+        r.anchorMax = new Vector2(0.5f, 0.5f);
+
+// Place exactly at the parent's center
+        r.anchoredPosition = Vector2.zero;
+
+// Center text alignment
+        t.alignment = TextAlignmentOptions.Center;  
 
         // TODO: Translate w-r-t parent's size.
         SpriteRenderer s = parent.GetComponent<SpriteRenderer>();
 
         //int parentOffsetX = PARENT_TEST.transform.
 
-        r.anchoredPosition = new Vector2(selfOffsetX, selfOffsetY); // Account for the size of the bounding box.
+
 
         t.text = text;
         t.fontSize = size;
