@@ -48,8 +48,8 @@ public class SelectorBody : MonoBehaviour
     {
         answers = new GameObject[answerCount];
 
-        float startAngle = 0f;
-        float endAngle = 180f;
+        float startAngle = -20f;
+        float endAngle = 200f;
         float angleStep = (endAngle - startAngle)/(answerCount-1);
 
         for (int i = 0; i < answerCount; i++)
@@ -57,9 +57,9 @@ public class SelectorBody : MonoBehaviour
             float angleDeg = startAngle + angleStep * i;
             float angleRad = angleDeg * Mathf.Deg2Rad;
 
-            UnityEngine.Vector2 pos = new UnityEngine.Vector2(center.x + Mathf.Cos(angleRad)* (radius) , (center.y + Mathf.Sin(angleRad) * radius/2.5f ));
+            UnityEngine.Vector2 pos = new UnityEngine.Vector2(center.x + Mathf.Cos(angleRad)* (radius*1.1f) , (center.y + Mathf.Sin(angleRad) * radius/2.5f ));
 
-            GameObject obj = Instantiate(answerPrefab, pos*19, UnityEngine.Quaternion.identity);
+            GameObject obj = Instantiate(answerPrefab, pos*15, UnityEngine.Quaternion.identity);
             answers[i] = obj;
 
             textRenderer.SayOnObject(obj, "answerText_" + i, "Answer " + i, 15);
