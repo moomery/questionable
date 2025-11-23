@@ -3,9 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ArrowMovement : MonoBehaviour
-{
-    // Update is called once per frame
-    void Update()
+{    void Update()
     {
         Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
 
