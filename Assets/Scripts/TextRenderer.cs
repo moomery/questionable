@@ -38,7 +38,7 @@ public class TextRenderer : MonoBehaviour
         
     }
 
-    void Say(string text)
+    public void Say(string text)
     {
         DEFAULT_TEXT_OBJECT.text = text;
     }
