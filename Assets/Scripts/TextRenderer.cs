@@ -24,11 +24,11 @@ public class TextRenderer : MonoBehaviour
         InstantiateText("mybox", "Test.", 0, 0, 0);
         InstantiateText("mybox2", "Another test.", 18, 0, 0, 100, 50);
 
-        SayOnObject(PARENT_TEST, "squaretext", "HEY I'M ON A SQUARE!!!", 18);
+        //SayOnObject(PARENT_TEST, "squaretext", "HEY I'M ON A SQUARE!!!", 18);
 
         DeleteText("mybox");
         DeleteText("mybox2");
-        UpdateText("squaretext", ".!");
+        // UpdateText("squaretext", ".!");
 
     }
 
@@ -65,10 +65,10 @@ public class TextRenderer : MonoBehaviour
 
         // TODO: Translate w-r-t parent's size.
         SpriteRenderer s = parent.GetComponent<SpriteRenderer>();
+
         //int parentOffsetX = PARENT_TEST.transform.
 
         r.anchoredPosition = new Vector2(selfOffsetX, selfOffsetY); // Account for the size of the bounding box.
-
 
         t.text = text;
         t.fontSize = size;

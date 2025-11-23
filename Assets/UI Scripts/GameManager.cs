@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject TempSelectorBody;
+    public GameObject SelectorBody;
   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -10,10 +10,10 @@ public class GameManager : MonoBehaviour
           //selector positions
     float SelectorX = 0.0f;
     float SelectorZ = 0.0f;
-    float SelectorY = -5.0f;
+    float SelectorY = (-5.0f)*19;
     Vector3 spawnPosition = new Vector3 (SelectorX, SelectorY, SelectorZ);
 
-     Instantiate(TempSelectorBody, spawnPosition, Quaternion.identity);
+     Instantiate(SelectorBody, spawnPosition, Quaternion.identity);
 
     }
 

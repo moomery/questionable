@@ -21,6 +21,10 @@ public class SelectorBody : MonoBehaviour
     public GameObject answerPrefab;
     public GameObject[] answers;
 
+    public TextRenderer textRenderer;
+
+    public Canvas canvas;
+
         void SetIndex(int index)
         {
             if (answerCount < 1) return;
@@ -53,10 +57,14 @@ public class SelectorBody : MonoBehaviour
             float angleDeg = startAngle + angleStep * i;
             float angleRad = angleDeg * Mathf.Deg2Rad;
 
-            UnityEngine.Vector2 pos = new UnityEngine.Vector2(center.x + Mathf.Cos(angleRad)* radius/1.5f , (center.y + Mathf.Sin(angleRad) * radius/3 ));
+            UnityEngine.Vector2 pos = new UnityEngine.Vector2(center.x + Mathf.Cos(angleRad)* (radius) , (center.y + Mathf.Sin(angleRad) * radius/2.5f ));
 
-            GameObject obj = Instantiate(answerPrefab, pos, UnityEngine.Quaternion.identity);
+            GameObject obj = Instantiate(answerPrefab, pos*19, UnityEngine.Quaternion.identity);
             answers[i] = obj;
+
+            textRenderer.SayOnObject(obj, "answerText_" + i, "Answer " + i, 15);
+            //reparent obj under canvas
+            obj.transform.SetParent(canvas.transform, false);
         }
         SetIndex(0);
         transform.position = targetPosition;
@@ -67,7 +75,6 @@ public class SelectorBody : MonoBehaviour
     {
         // transform.position = UnityEngine.Vector2.Lerp(transform.position, targetPosition, Time.deltaTime * snapSpeed);
         // transform.rotation = UnityEngine.Quaternion.Lerp(transform.rotation, UnityEngine.Quaternion.Euler(0,0, targetAngle), Time.deltaTime * snapSpeed);
-
     }
 }
 
