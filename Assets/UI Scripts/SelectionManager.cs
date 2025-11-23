@@ -2,13 +2,20 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
 public class SelectionManager : MonoBehaviour
 {   private GameObject selectedObject;
 
+    public GameManager g;
+
     void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if(g.state != null && g.state == States_.AWAITING_CONTINUE)
+        {
+            // Bypass clicking when awaiting next question.
+            return;   
+        }
+        
+        else if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             UnityEngine.Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
             //get mouse position global
@@ -31,16 +38,11 @@ public class SelectionManager : MonoBehaviour
 
                 selectedObject = hit.collider.gameObject;
                 selectedObject.GetComponent<SpriteRenderer>().color = Color.red;
-                Debug.Log("Selected: " + selectedObject.name);
             }
-            else
+            else if (selectedObject != null)
             {
-                if (selectedObject != null)
-                {
-                    Debug.Log("Deselected: " + selectedObject.name);
-                    selectedObject.GetComponent<SpriteRenderer>().color = Color.white;
-                    selectedObject = null;
-                }
+                selectedObject.GetComponent<SpriteRenderer>().color = Color.white;
+                selectedObject = null;
             }
 
         }

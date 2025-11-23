@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 public class Question
@@ -11,7 +12,7 @@ public class Question
 
 
 
-    string[] banter;
+    public string[] banter;
     public Question(string question, string[] choices, int indexOfCorrectAnswer, string[] banter)
     {
         this.question = question;
@@ -24,7 +25,8 @@ public class GameManager : MonoBehaviour
 {
     public TextRenderer textRenderer;
     int currentQuestion = 0;
-    Boolean needsQuestion = true;
+    public string state = "NEEDS_QUESTION";
+    
 
     public Question[] questions => new Question[]
     {
@@ -32,7 +34,15 @@ public class GameManager : MonoBehaviour
             "What color is the sky?",
             new string [] {"Red", "Blue", "None"},
             1,
-            new string [] {"What?", "CorrecT!", "What?"}
+            new string [] {"What?", "Correct!", "What?"}
+
+        ),
+
+        new Question(
+            "Are you SURE?",
+            new string [] {"Yes", "No"},
+            1,
+            new string [] {"I like your confidence.", "How dare you!"}
 
         )
 
@@ -60,20 +70,47 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(needsQuestion)
+
+
+        if(currentQuestion >= questions.Length)
         {
-            // Load the text into the default text bos with Say function,
-                 //load questio
+            textRenderer.Say("You win!");
+            state = States_.VICTORY;
+        }
+
+        else if(state == States_.NEEDS_QUESTION)
+        {
+            s.FlushChoices();
+            // Load the text
             textRenderer.Say(questions[currentQuestion].question);
 
             // Load the answer options into the text box
-            s.PopulateChoices(questions[currentQuestion].choices);
+            s.PopulateChoices(questions[currentQuestion].choices, currentQuestion);
 
-            needsQuestion = false;
+            state = States_.IS_ANSWERING;
+
         }
-        else
+        else if (state == States_.IS_ANSWERING)
         {
-            // Wait for a response......
+            // Check for answer
+            int ans = s.GetAnswer();
+            if(ans == -1)
+            {
+                return;
+            }
+            state = States_.AWAITING_CONTINUE;
+            textRenderer.Say(questions[currentQuestion].banter[ans]);
+
+        }
+        if (state == States_.AWAITING_CONTINUE) 
+        {
+
+            if(Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                state = States_.NEEDS_QUESTION;  
+                currentQuestion += 1;        
+            }
+
         }
     }
 }

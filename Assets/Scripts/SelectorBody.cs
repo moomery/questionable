@@ -47,7 +47,29 @@ public class SelectorBody : MonoBehaviour
     {
     }
 
-    public void PopulateChoices(string[] choices)
+    public int GetAnswer()
+    {
+
+        for (int i = 0; i < answers.Length; i++)
+        {
+            if(answers[i].GetComponent<SpriteRenderer>().color == Color.red)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void FlushChoices()
+    {
+        foreach (GameObject answer in answers)
+        {
+            Destroy(answer);
+        }
+        answers = new GameObject[0];
+    }
+
+    public void PopulateChoices(string[] choices, int qnum)
     {
         int answerCount = choices.Length;
         answers = new GameObject[answerCount];
@@ -66,7 +88,7 @@ public class SelectorBody : MonoBehaviour
             GameObject obj = Instantiate(answerPrefab, pos*15, UnityEngine.Quaternion.identity);
             answers[i] = obj;
 
-            textRenderer.SayOnObject(obj, "answerText_" + i, choices[i], 15);
+            textRenderer.SayOnObject(obj, "Q_" + qnum + "A_" + i, choices[i], 15);
             //reparent obj under canvas
             obj.transform.SetParent(canvas.transform, false);
         }
