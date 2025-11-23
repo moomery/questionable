@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 
 
     public GameObject SelectorBody;
+    SelectorBody s;
   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
     Vector3 spawnPosition = new Vector3 (SelectorX, SelectorY, SelectorZ);
 
      Instantiate(SelectorBody, spawnPosition, Quaternion.identity);
+     s = SelectorBody.GetComponent<SelectorBody>();
 
 
     }
@@ -63,10 +65,9 @@ public class GameManager : MonoBehaviour
             // Load the text into the default text bos with Say function,
                  //load questio
             textRenderer.Say(questions[currentQuestion].question);
-            
-     
 
             // Load the answer options into the text box
+            s.PopulateChoices(questions[currentQuestion].choices);
 
             needsQuestion = false;
         }

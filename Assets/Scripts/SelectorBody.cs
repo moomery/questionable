@@ -10,7 +10,6 @@ public class SelectorBody : MonoBehaviour
     public UnityEngine.Vector2 center = new UnityEngine.Vector2(0, -4f);
     public float radius = 5f;
     public float answerAmplitude = 2f;
-    public int answerCount = 3;
 
     public float snapSpeed = 12f;
 
@@ -25,7 +24,7 @@ public class SelectorBody : MonoBehaviour
 
     public Canvas canvas;
 
-        void SetIndex(int index)
+        void SetIndex(int answerCount, int index)
         {
             if (answerCount < 1) return;
             if (index < 0)index = 0;
@@ -46,6 +45,11 @@ public class SelectorBody : MonoBehaviour
         }
         void Start()
     {
+    }
+
+    public void PopulateChoices(string[] choices)
+    {
+        int answerCount = choices.Length;
         answers = new GameObject[answerCount];
 
         float startAngle = -20f;
@@ -62,12 +66,13 @@ public class SelectorBody : MonoBehaviour
             GameObject obj = Instantiate(answerPrefab, pos*15, UnityEngine.Quaternion.identity);
             answers[i] = obj;
 
-            textRenderer.SayOnObject(obj, "answerText_" + i, "Answer " + i, 15);
+            textRenderer.SayOnObject(obj, "answerText_" + i, choices[i], 15);
             //reparent obj under canvas
             obj.transform.SetParent(canvas.transform, false);
         }
-        SetIndex(0);
+        SetIndex(answerCount, 0);
         transform.position = targetPosition;
+
     }
 
     // Update is called once per frame
