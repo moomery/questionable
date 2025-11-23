@@ -80,7 +80,6 @@ public class GameManager : MonoBehaviour
 
         else if(state == States_.NEEDS_QUESTION)
         {
-            s.FlushChoices();
             // Load the text
             textRenderer.Say(questions[currentQuestion].question);
 
@@ -108,7 +107,9 @@ public class GameManager : MonoBehaviour
             if(Mouse.current.leftButton.wasPressedThisFrame)
             {
                 state = States_.NEEDS_QUESTION;  
+                s.FlushChoices();
                 currentQuestion += 1;        
+
             }
 
         }
