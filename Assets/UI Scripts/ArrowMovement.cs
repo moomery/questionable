@@ -7,7 +7,14 @@ public class ArrowMovement : MonoBehaviour
     
     float power = 0;
     public GameObject p;
+    public GameObject h;
     
+    void Start()
+    {
+        HeartManager hm = h.GetComponent<HeartManager>();
+        hm.UpdateHealth(3);
+    }
+
     void Update()
     {
 
