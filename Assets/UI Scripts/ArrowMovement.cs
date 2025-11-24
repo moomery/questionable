@@ -8,18 +8,26 @@ public class ArrowMovement : MonoBehaviour
     float power = 0;
     public GameObject p;
     public GameObject h;
+
+    ProjectileManager pm;
     
+    float timeElapsed = 0;
+    bool hasAddedThisSecond = false;
+
+    public float period = 3;
+
     void Start()
     {
         HeartManager hm = h.GetComponent<HeartManager>();
         hm.UpdateHealth(3);
+
+        pm = p.GetComponent<ProjectileManager>();
     }
 
     void Update()
     {
 
-
-
+        // Handle other stuff
         Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
 
         Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPos);
@@ -36,7 +44,7 @@ public class ArrowMovement : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            ProjectileManager pm = p.GetComponent<ProjectileManager>();
+            
 
             // Move projectile up by the length of the arrow's sprite.
             SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
@@ -49,6 +57,34 @@ public class ArrowMovement : MonoBehaviour
             pm.CreateProjectile(newPos, angle, power);
             power = 0;
         }
+
+
+
+        
+        // Create fly every few seconds
+
+        timeElapsed += Time.deltaTime;
+
+        if(Mathf.Round(timeElapsed) % period == 0 && !hasAddedThisSecond)
+        {
+            hasAddedThisSecond = true;
+            float r = Random.Range(0f, 180f);
+            float amplitude = 120;
+
+            // Track to the center of sprite
+            SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
+            float height = sr.sprite.bounds.size.y;
+            float angleRad = angle*Mathf.Deg2Rad;
+            Vector2 newDest = new Vector2 (transform.position.x + 0.5f*height*Mathf.Cos(angleRad), transform.position.y + 0.5f*height * Mathf.Sin(angleRad));
+
+
+            pm.CreateFly(new Vector2(Mathf.Cos(r)*amplitude, Mathf.Sin(r)*amplitude), transform.position, 5);
+        }
+        else if (Mathf.Round(timeElapsed) % period != 0)
+        {
+            hasAddedThisSecond = false;
+        }
+
     }
 
     
