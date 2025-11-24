@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ArrowMovement : MonoBehaviour
 {
 
+    public string phase;
     public GameObject gjwtr;
     TextRenderer tr;
     
@@ -82,45 +83,91 @@ public class ArrowMovement : MonoBehaviour
 
         // Create fly every few seconds
 
-        timeElapsed += Time.deltaTime;
+        if(phase == "B1") 
+        {
+            timeElapsed += Time.deltaTime;
+        }
+        else if (phase == "B2") 
+        {
+            timeElapsed += Time.deltaTime*1.1f;
+        }
 
         if(Mathf.Round(timeElapsed) % period == 0 && !hasAddedThisSecond)
         {
-            
-            if(timeElapsed < 4)
-            {            
-                SpawnFly();
-            }
-            else if (timeElapsed < 10)
-            {
-                SpawnFly();
-                SpawnFly();
-            }
-            else if(timeElapsed < 16)
-            {
-                SpawnFly();
-                SpawnFly();
-                SpawnFly();
-            }
-            else if(timeElapsed < 24)
-            {
-                SpawnFly();
-                SpawnFly();
-                SpawnFly();
-                SpawnFly();
 
-            } else if (timeElapsed < 40)
+            if(phase == "B1")
             {
-                SpawnFly();
-                SpawnFly();
-                SpawnFly();
-                SpawnFly();
-                SpawnFly();
-            } else
-            {
-                tr.Say("You win!");
-                SceneManager.LoadScene("PhaseA2");
+                if(timeElapsed < 4)
+                {            
+                    SpawnFly();
+                }
+                else if (timeElapsed < 10)
+                {
+                    SpawnFly();
+                    SpawnFly();
+                }
+                else if(timeElapsed < 16)
+                {
+                    SpawnFly();
+                    SpawnFly();
+                    SpawnFly();
+                }
+                else if(timeElapsed < 24)
+                {
+                    SpawnFly();
+                    SpawnFly();
+                    SpawnFly();
+                    SpawnFly();
+
+                } else if (timeElapsed < 40)
+                {
+                    SpawnFly();
+                    SpawnFly();
+                    SpawnFly();
+                    SpawnFly();
+                    SpawnFly();
+                } else
+                {
+                    tr.Say("You win!");
+                    SceneManager.LoadScene("PhaseA2");
+                }
             }
+            else if(phase == "B2")
+            {
+                if(timeElapsed < 4)
+                {            
+                    SpawnFly();
+                    SpawnFly();
+                }
+                else if (timeElapsed < 8)
+                {
+                    SpawnFly();
+                    SpawnFly();
+                    SpawnFly();
+                }
+                else if(timeElapsed < 20)
+                {
+                    SpawnFly();
+                    SpawnFly();
+                    SpawnFly();
+                    SpawnFly();
+                }
+                 else if (timeElapsed < 30)
+                {
+                    SpawnFly();
+                    SpawnFly();
+                    SpawnFly();
+                    SpawnFly();
+                    SpawnFly();
+                    SpawnFly();
+                    SpawnFly();
+                } else
+                {
+                    tr.Say("You win!");
+                    SceneManager.LoadScene("PhaseA3");
+                }
+            }
+
 
             hasAddedThisSecond = true;
         }

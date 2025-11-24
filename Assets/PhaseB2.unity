@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2719f3f70744f98981d8d5cf59aae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArrowMovement
-  phase: B1
+  phase: B2
   gjwtr: {fileID: 2069788106}
   p: {fileID: 510560452}
   h: {fileID: 602759731}
@@ -744,7 +744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   heartManager: {fileID: 602759731}
-  fac: 50
+  fac: 55
   angle: 0
   power: 0
   location: {x: 0, y: 0}
@@ -960,7 +960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   mode: 0
   fartGameObject: {fileID: 1673766776}
-  fac: 100
+  fac: 150
   angle: 0
   power: 0
   location: {x: 0, y: 0}
