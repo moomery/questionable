@@ -3,6 +3,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
 
+    public GameObject fartGameObject;
+    Fartguy f;
     public float fac = 500;
 
     public float angle;
@@ -12,6 +14,7 @@ public class Projectile : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        f = fartGameObject.GetComponent<Fartguy>();
     }
 
     // Update is called once per frame
@@ -36,6 +39,11 @@ public class Projectile : MonoBehaviour
             Destroy(c.gameObject);
             Destroy(gameObject);
         }
+        else if(c.gameObject.name == "fart")
+        {
+            f.DecrementHealth();
+            Destroy(gameObject);
+        } 
         else
         {
             Debug.Log(c.gameObject.name);

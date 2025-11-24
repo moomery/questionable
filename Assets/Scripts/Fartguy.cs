@@ -3,6 +3,13 @@ using UnityEngine;
 public class Fartguy : MonoBehaviour
 {
 
+    public GameObject healthBar;
+    TextRenderer hb;
+    string bossFullHealthString = "BOSS HEALTH: XXXXXXXXXXXXXXXXXXXXX";
+
+    float bossMaxHealth = 30f;
+    float bossCurrentHealth = 30f;
+
     Vector2 target = new Vector2(0, 0);
     float timeElapsed = 0;
     public GameObject pmObj;
@@ -19,8 +26,21 @@ public class Fartguy : MonoBehaviour
         startTime = System.DateTime.Now.Ticks;
 
         p = pmObj.GetComponent<ProjectileManager>();
+        hb = healthBar.GetComponent<TextRenderer>();
     }
 
+    public void DecrementHealth()
+    {
+        bossCurrentHealth -= 1;
+
+        string bar = "";
+        for(int i = 0; i < bossFullHealthString.Length *  (bossCurrentHealth/bossMaxHealth); i++)
+        {
+            bar = bar + bossFullHealthString[i];
+        }
+
+        hb.Say(bar);
+    }
     public void SetTarget(Vector2 t)
     {
         this.target = t;
@@ -49,7 +69,7 @@ public class Fartguy : MonoBehaviour
         if(Mathf.Round(timeElapsed*12) % period == 0 && !hasAddedThisSecond)
         {
             hasAddedThisSecond = true;
-            SpawnFly();
+            //SpawnFly();
         }
         else if (Mathf.Round(timeElapsed * 12) % period != 0)
         {

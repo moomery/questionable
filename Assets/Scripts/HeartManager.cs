@@ -5,22 +5,23 @@ public class HeartManager : MonoBehaviour
     public GameObject heartPrefab;
     int numHearts = 3;
     public List<GameObject> hearts;
-    public Canvas c;
+    public GameObject c;
+
     TextRenderer t;
     public void DecrementHealth()
     {
-
-
-        Debug.Log(hearts.Count);
-        hearts[hearts.Count - 1].SetActive(false);
-        Destroy(hearts[hearts.Count - 1]);
-        hearts.RemoveAt(hearts.Count - 1);
 
         if(hearts.Count == 0)
         {
             t.Say("YOU LOSE!"); 
             return;
         }
+
+        Debug.Log(hearts.Count);
+        hearts[hearts.Count - 1].SetActive(false);
+        Destroy(hearts[hearts.Count - 1]);
+        hearts.RemoveAt(hearts.Count - 1);
+
 
     }
 
