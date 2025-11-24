@@ -19,6 +19,8 @@ public class Fartguy : MonoBehaviour
     float period = 3;
     bool hasAddedThisSecond = false;
 
+    float phaseDuration = 9;
+
     Transform t;
     long startTime;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -66,23 +68,36 @@ public class Fartguy : MonoBehaviour
 
     }
 
+    void Burst()
+    {
+        // BURST!!!
+        if(Mathf.Round(timeElapsed*12) % period == 0 && !hasAddedThisSecond)
+        {
+            hasAddedThisSecond = true;
+            SpawnFly();
+        }
+        else if (Mathf.Round(timeElapsed * 12) % period != 0)
+        {
+            hasAddedThisSecond = false;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         long x = System.DateTime.Now.Ticks - startTime;
         timeElapsed += Time.deltaTime;
 
+        if(timeElapsed % phaseDuration < 6)
+        {
+            Burst();        
+        }
+        else
+        {
+            // Nothin'!
+        }
 
         t.position = new Vector3(90*Mathf.Sin((float)x/12000000), 80 + 23*Mathf.Cos((float)x/5000000 + 4), 0);
-        // Spawn fly
-        if(Mathf.Round(timeElapsed*12) % period == 0 && !hasAddedThisSecond)
-        {
-            hasAddedThisSecond = true;
-            //SpawnFly();
-        }
-        else if (Mathf.Round(timeElapsed * 12) % period != 0)
-        {
-            hasAddedThisSecond = false;
-        }
+
     }
 }
