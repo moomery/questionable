@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 
 public class ArrowMovement : MonoBehaviour
 {
+
+    public GameObject gjwtr;
+    TextRenderer tr;
     
     float power = 0;
     public GameObject p;
@@ -16,12 +19,29 @@ public class ArrowMovement : MonoBehaviour
 
     public float period = 3;
 
+    float difficultyMultiplier = 1;
+
     void Start()
     {
-
+        tr = gjwtr.GetComponent<TextRenderer>();
         pm = p.GetComponent<ProjectileManager>();
     }
 
+
+    void SpawnFly()
+    {
+        float r = Random.Range(0f, 3.14f);
+        float amplitude = 120;
+
+        // Track to the center of sprite
+        SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
+        float height = sr.sprite.bounds.size.y;
+        Vector2 newDest = new Vector2 (transform.position.x, transform.position.y + 0.5f*height);
+
+
+        pm.CreateFly(new Vector2(Mathf.Cos(r)*amplitude, Mathf.Sin(r)*amplitude), transform.position, 5);
+
+    }
     void Update()
     {
 
@@ -58,25 +78,49 @@ public class ArrowMovement : MonoBehaviour
 
 
 
-        
+
         // Create fly every few seconds
 
         timeElapsed += Time.deltaTime;
 
         if(Mathf.Round(timeElapsed) % period == 0 && !hasAddedThisSecond)
         {
+            
+            if(timeElapsed < 4)
+            {            
+                SpawnFly();
+            }
+            else if (timeElapsed < 10)
+            {
+                SpawnFly();
+                SpawnFly();
+            }
+            else if(timeElapsed < 16)
+            {
+                SpawnFly();
+                SpawnFly();
+                SpawnFly();
+            }
+            else if(timeElapsed < 24)
+            {
+                SpawnFly();
+                SpawnFly();
+                SpawnFly();
+                SpawnFly();
+
+            } else if (timeElapsed < 40)
+            {
+                SpawnFly();
+                SpawnFly();
+                SpawnFly();
+                SpawnFly();
+                SpawnFly();
+            } else
+            {
+                tr.Say("You win!");
+            }
+
             hasAddedThisSecond = true;
-            float r = Random.Range(0f, 3.14f);
-            float amplitude = 120;
-
-            // Track to the center of sprite
-            SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
-            float height = sr.sprite.bounds.size.y;
-            float angleRad = angle*Mathf.Deg2Rad;
-            Vector2 newDest = new Vector2 (transform.position.x + 0.5f*height*Mathf.Cos(angleRad), transform.position.y + 0.5f*height * Mathf.Sin(angleRad));
-
-
-            pm.CreateFly(new Vector2(Mathf.Cos(r)*amplitude, Mathf.Sin(r)*amplitude), transform.position, 5);
         }
         else if (Mathf.Round(timeElapsed) % period != 0)
         {

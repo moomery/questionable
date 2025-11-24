@@ -42,13 +42,6 @@ public class ProjectileManager : MonoBehaviour
     void Update()
     {
 
-        // foreach(GameObject g in projectiles)
-        // {
-        //     Collider collider = g.GetComponent<Collider>();
-        //     foreach(GameObject h in flies)
-        //     {
-        //         Collider targetCandidate = g.GetComponent<Collider>();
-        //     }
-        // }
+
     }
 }
