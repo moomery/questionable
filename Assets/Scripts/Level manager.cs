@@ -26,7 +26,7 @@ public class levelManager : MonoBehaviour
     _loaderCanvas.SetActive(true);
     _progressBar.fillAmount = 0f;
 
-    await Task.Delay(100); // ensures loader UI has a frame to appear
+    await Task.Delay(50); // ensures loader UI has a frame to appear
 
     var scene = SceneManager.LoadSceneAsync(sceneName);
     scene.allowSceneActivation = false;
@@ -40,7 +40,7 @@ public class levelManager : MonoBehaviour
     _progressBar.fillAmount = 1f;
 
     // Optional: small delay for visual consistency
-    await Task.Delay(400);
+    await Task.Delay(200);
 
     scene.allowSceneActivation = true;
     // Do NOT disable canvas yet — the new scene needs 1 frame to activate

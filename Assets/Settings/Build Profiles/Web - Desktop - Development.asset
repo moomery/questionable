@@ -18,14 +18,46 @@ MonoBehaviour:
   m_PlatformId: 84a3bb9e7420477f885e98145999eb20
   m_PlatformBuildProfile:
     rid: 2271612465972248641
-  m_OverrideGlobalSceneList: 0
-  m_Scenes: []
+  m_OverrideGlobalSceneList: 1
+  m_Scenes:
+  - m_enabled: 0
+    m_path: Assets/Menu.unity
+  - m_enabled: 1
+    m_path: Assets/Intro.unity
+  - m_enabled: 1
+    m_path: Assets/PhaseA.unity
+  - m_enabled: 1
+    m_path: Assets/PhaseB.unity
+  - m_enabled: 1
+    m_path: Assets/PhaseA2.unity
+  - m_enabled: 1
+    m_path: Assets/PhaseB2.unity
+  - m_enabled: 1
+    m_path: Assets/PhaseA3.unity
+  - m_enabled: 1
+    m_path: Assets/PhaseC.unity
+  - m_enabled: 1
+    m_path: Assets/Win Scene.unity
+  - m_enabled: 1
+    m_path: Assets/Loss Scene.unity
+  - m_enabled: 1
+    m_path: Assets/Loss2.unity
+  - m_enabled: 1
+    m_path: Assets/Loss3.unity
   m_ScriptingDefines:
   - Menu
   - Intro
   - PhaseA
   - PhaseB
   - PhaseA2
+  - PhaseB2
+  - PhaseA3
+  - PhaseC
+  - Win
+  - Scene
+  - Loss
+  - Loss2
+  - Loss3
   m_PlayerSettingsYaml:
     m_Settings:
     - line: '| PlayerSettings:'
