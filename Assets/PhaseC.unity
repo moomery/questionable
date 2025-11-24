@@ -476,6 +476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1d05b57bf62c46a398cdc8321ddd25b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
+  mode: 1
   fartGameObject: {fileID: 1143560941}
   fac: 500
   angle: 0

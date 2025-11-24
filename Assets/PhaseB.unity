@@ -604,7 +604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   heartPrefab: {fileID: 830941926}
   hearts: []
-  c: {fileID: 2069788112}
+  c: {fileID: 2069788106}
 --- !u!4 &602759733
 Transform:
   m_ObjectHideFlags: 0
@@ -894,6 +894,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &1673766776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1673766777}
+  m_Layer: 0
+  m_Name: FART PLACEHOLDER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1673766777
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673766776}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -155.34445, y: -8.38666, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2036579197
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,6 +957,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1d05b57bf62c46a398cdc8321ddd25b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  mode: 0
+  fartGameObject: {fileID: 1673766776}
   fac: 100
   angle: 0
   power: 0
@@ -1309,3 +1342,4 @@ SceneRoots:
   - {fileID: 830941928}
   - {fileID: 1171470573}
   - {fileID: 2069788113}
+  - {fileID: 1673766777}

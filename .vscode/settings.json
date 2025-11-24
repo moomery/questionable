@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Tri_347.slnx"
+    "dotnet.defaultSolution": "questionable.slnx"
 }

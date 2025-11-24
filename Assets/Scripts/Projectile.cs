@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public float mode;
 
     public GameObject fartGameObject;
     Fartguy f;
@@ -14,7 +15,8 @@ public class Projectile : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        f = fartGameObject.GetComponent<Fartguy>();
+        if(mode == 1)
+            f = fartGameObject.GetComponent<Fartguy>();
     }
 
     // Update is called once per frame
@@ -39,7 +41,7 @@ public class Projectile : MonoBehaviour
             Destroy(c.gameObject);
             Destroy(gameObject);
         }
-        else if(c.gameObject.name == "fart")
+        else if(mode == 1 && c.gameObject.name == "fart")
         {
             f.DecrementHealth();
             Destroy(gameObject);
