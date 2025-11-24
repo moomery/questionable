@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 public class HeartManager : MonoBehaviour
 {
     public GameObject heartPrefab;
@@ -14,6 +15,7 @@ public class HeartManager : MonoBehaviour
         if(hearts.Count == 0)
         {
             t.Say("YOU LOSE!"); 
+            SceneManager.LoadScene("Loss Scene");
             return;
         }
 

@@ -14,7 +14,7 @@ public class QuizDialogue : MonoBehaviour
             {
                 "Q1", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "What color is the sky?" },
                     choices = new Dictionary<string,string>()
                     {
@@ -27,7 +27,7 @@ public class QuizDialogue : MonoBehaviour
             {
                 "Q1_CORRECT", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "Correct!" },
                     next = "Q2"
                 }
@@ -35,7 +35,7 @@ public class QuizDialogue : MonoBehaviour
             {
                 "Q1_WRONG", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "Wrong!" },
                     next = "Q2"
                 }
@@ -43,7 +43,7 @@ public class QuizDialogue : MonoBehaviour
             {
                 "Q2", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "Do Stalactites hang on the ceiling or emerge from the floor?" },
                     choices = new Dictionary<string,string>()
                     {
@@ -55,7 +55,7 @@ public class QuizDialogue : MonoBehaviour
             {
                 "Q2_CORRECT", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "Good job!" },
                     next = "Q3"
                 }
@@ -63,7 +63,7 @@ public class QuizDialogue : MonoBehaviour
             {
                 "Q2_WRONG", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "Incorrect!" },
                     next = "Q3"
                 }
@@ -73,14 +73,19 @@ public class QuizDialogue : MonoBehaviour
             {
                 "Q3", new DialogueNode()
                 {
-                    speaker = "Spider",
-                    lines = new string[] { "Time for a mini-game!" },
+                    speaker = "Rachne",
+                    lines = new string[] { "Time for a mini-game! You'll be shooting with Jerry, remember that." },
                     waitForExternalEvent = true,
                     onComplete = () =>
                     {
                         var spiderWoman = GameObject.Find("boss_0");
                         if (spiderWoman != null)
                         Destroy(spiderWoman);
+
+                        var audioObj = GameObject.Find("MusicPhaseA");
+                        if (audioObj != null)
+                        Destroy(audioObj);
+                        
                         // Load PhaseB additively
                         {
                         if (!SceneManager.GetSceneByName("PhaseB").isLoaded)
