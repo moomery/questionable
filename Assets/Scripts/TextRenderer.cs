@@ -7,7 +7,7 @@ public class TextRenderer : MonoBehaviour
     public TMP_FontAsset f;
     public TextMeshProUGUI DEFAULT_TEXT_OBJECT;
     public int DEFAULT_FONT_SIZE = 18;
-    Dictionary<string, GameObject> textObjects = new Dictionary<string, GameObject>();
+    public Dictionary<string, GameObject> textObjects = new Dictionary<string, GameObject>();
 
     public GameObject PARENT_TEST;
 
