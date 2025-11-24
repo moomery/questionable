@@ -36,6 +36,14 @@ public class TextRenderer : MonoBehaviour
     public void SayOnObject(GameObject parent, string id, string text, int size)
     {
     // If already exists, just update text
+    if (parent == null)
+{
+    Debug.LogError("SayOnObject ERROR: parent is NULL!");
+}
+if (CURRENT_CANVAS == null)
+{
+    Debug.LogError("SayOnObject ERROR: CURRENT_CANVAS is NULL!");
+}
     if (textObjects.ContainsKey(id))
     {
         UpdateText(id, text);
@@ -52,9 +60,6 @@ public class TextRenderer : MonoBehaviour
     r.pivot = new Vector2(0.5f, 0.5f);
     r.anchorMin = new Vector2(0.5f, 0.5f);
     r.anchorMax = new Vector2(0.5f, 0.5f);
-
-    // Center inside parent
-    r.anchoredPosition = Vector2.zero;
 
     t.text = text;
     t.fontSize = size;

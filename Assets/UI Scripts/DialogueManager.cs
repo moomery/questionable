@@ -55,34 +55,43 @@ public class DialogueManager: MonoBehaviour
     {
 {
     int totalChoices = currentNode.choices.Count;
-    float spacingX = 5f; // distance between choice objects
-    float centerY = 0f;  // vertical position of all choices
-    int i = 0;
+    float spacingX = 100f;     // distance between buttons
+    float baseY = -50f;         // pixels from bottom of parent
 
+    int i = 0;
     foreach (var kvp in currentNode.choices)
     {
-        textRenderer.SayOnObject(choiceParent.gameObject, kvp.Key, kvp.Key, 18);
-        GameObject choiceObj = textRenderer.textObjects[kvp.Key];
+        // Instantiate a simple empty GameObject as hit area
+        GameObject hitObj = new GameObject(kvp.Key);
+        hitObj.transform.SetParent(choiceParent, false);
 
-        // Add a collider if it doesn't exist
-        if (choiceObj.GetComponent<BoxCollider2D>() == null)
-        {
-            var col = choiceObj.AddComponent<BoxCollider2D>();
-            var tm = choiceObj.GetComponent<TextMeshPro>();
-            col.size = new UnityEngine.Vector2(tm.preferredWidth + 20, tm.preferredHeight + 10);
-        }
+        // Add RectTransform
+        RectTransform rt = hitObj.AddComponent<RectTransform>();
+        rt.sizeDelta = new UnityEngine.Vector2(160, 40); // size of clickable area
+        float offset = (i - (totalChoices - 1) / 2f) * spacingX;
+        rt.anchoredPosition = new UnityEngine.Vector2(offset, baseY);
 
-        // Position choices horizontally like in your QuizManager
-        UnityEngine.Vector3 pos = new UnityEngine.Vector3(
-            spacingX * (i - (totalChoices - 1) / 2f),
-            centerY,
-            0
-        );
-        choiceObj.transform.localPosition = pos;
+        // Add CanvasRenderer and Button for UI clicks
+        hitObj.AddComponent<CanvasRenderer>();
+        UnityEngine.UI.Button btn = hitObj.AddComponent<UnityEngine.UI.Button>();
+        string choiceCopy = kvp.Key;
+        btn.onClick.AddListener(() => OnChoiceSelected(choiceCopy));
+
+        // Add TextMeshProUGUI for label
+        TextMeshProUGUI tmp = new GameObject("Text").AddComponent<TextMeshProUGUI>();
+        tmp.transform.SetParent(hitObj.transform, false);
+        tmp.text = kvp.Key;
+        tmp.fontSize = 18;
+        tmp.alignment = TextAlignmentOptions.Center;
+        tmp.rectTransform.sizeDelta = rt.sizeDelta;
+
+        // Track text object if needed
+        textRenderer.textObjects[kvp.Key] = tmp.gameObject;
 
         i++;
     }
     waitingForChoice = true;
+    
 }
 
     }

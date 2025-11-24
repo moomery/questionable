@@ -1108,7 +1108,6 @@ MonoBehaviour:
   f: {fileID: 11400000, guid: 6f04702d0f94c47299f35c6e4632455d, type: 2}
   DEFAULT_TEXT_OBJECT: {fileID: 1812756800}
   DEFAULT_FONT_SIZE: 18
-  PARENT_TEST: {fileID: 0}
   CURRENT_CANVAS: {fileID: 808901544}
 --- !u!224 &1812756799
 RectTransform:
@@ -1151,8 +1150,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6f04702d0f94c47299f35c6e4632455d, type: 2}
+  m_sharedMaterial: {fileID: 357477168780807921, guid: 6f04702d0f94c47299f35c6e4632455d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
