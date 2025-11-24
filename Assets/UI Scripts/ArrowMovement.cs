@@ -1,6 +1,7 @@
 using Mono.Cecil;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class ArrowMovement : MonoBehaviour
 {
@@ -118,6 +119,7 @@ public class ArrowMovement : MonoBehaviour
             } else
             {
                 tr.Say("You win!");
+                SceneManager.LoadScene("PhaseA2");
             }
 
             hasAddedThisSecond = true;

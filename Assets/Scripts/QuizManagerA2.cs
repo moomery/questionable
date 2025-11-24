@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class QuizDialogue : MonoBehaviour
+public class QuizDialogueA2 : MonoBehaviour
 {
     public DialogueManager dialogueManager;
 
@@ -219,7 +219,7 @@ public class QuizDialogue : MonoBehaviour
             }
             
         };
-        dialogueManager.LoadDialogue(nodes, "Q1");
+        dialogueManager.LoadDialogue(nodes, "Q4");
     }
     
 }

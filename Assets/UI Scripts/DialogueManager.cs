@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using System.Numerics;
 using TMPro;
+using UnityEngine.UI;
+// Make sure this is at the top
+
 
 
 public class DialogueManager: MonoBehaviour
@@ -11,6 +14,7 @@ public class DialogueManager: MonoBehaviour
     public TextRenderer textRenderer;
     public GameObject choiceButtonPrefab;
     public Transform choiceParent;
+    public TMP_FontAsset choiceFont;
 
     Dictionary <string, DialogueNode> dialogue;
     public DialogueNode currentNode;
@@ -18,20 +22,13 @@ public class DialogueManager: MonoBehaviour
     public bool waitingForChoice = false;
     
     Dictionary<string, DialogueNode> savedNodes;
-    public static DialogueManager Instance;
 
-    void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
+
     public void LoadDialogue(Dictionary<string, DialogueNode> data, string start)
     {
+
+    
+
         dialogue = data;
         savedNodes = data;
         currentNode = dialogue[start];
@@ -51,48 +48,71 @@ public class DialogueManager: MonoBehaviour
         }
     }
 
-    void DisplayChoices()
-    {
+    public void DisplayChoices()
 {
-    int totalChoices = currentNode.choices.Count;
-    float spacingX = 100f;     // distance between buttons
-    float baseY = -50f;         // pixels from bottom of parent
+   if (currentNode.choices == null || currentNode.choices.Count == 0) return;
 
-    int i = 0;
+    float baseY = -50f; // vertical position
+    float spacing = 10f; // horizontal spacing between buttons
+
+    List<RectTransform> buttonRects = new List<RectTransform>();
+
+    // First create buttons and let them auto-size
     foreach (var kvp in currentNode.choices)
     {
-        // Instantiate a simple empty GameObject as hit area
-        GameObject hitObj = new GameObject(kvp.Key);
-        hitObj.transform.SetParent(choiceParent, false);
+        GameObject buttonObj = new GameObject(kvp.Key);
+        buttonObj.transform.SetParent(choiceParent, false);
 
-        // Add RectTransform
-        RectTransform rt = hitObj.AddComponent<RectTransform>();
-        rt.sizeDelta = new UnityEngine.Vector2(160, 40); // size of clickable area
-        float offset = (i - (totalChoices - 1) / 2f) * spacingX;
-        rt.anchoredPosition = new UnityEngine.Vector2(offset, baseY);
+        var btn = buttonObj.AddComponent<UnityEngine.UI.Button>();
+        var img = buttonObj.AddComponent<UnityEngine.UI.Image>();
+        img.color = new Color(1f, 1f, 1f, 0.1f);
 
-        // Add CanvasRenderer and Button for UI clicks
-        hitObj.AddComponent<CanvasRenderer>();
-        UnityEngine.UI.Button btn = hitObj.AddComponent<UnityEngine.UI.Button>();
-        string choiceCopy = kvp.Key;
-        btn.onClick.AddListener(() => OnChoiceSelected(choiceCopy));
-
-        // Add TextMeshProUGUI for label
         TextMeshProUGUI tmp = new GameObject("Text").AddComponent<TextMeshProUGUI>();
-        tmp.transform.SetParent(hitObj.transform, false);
+        tmp.transform.SetParent(buttonObj.transform, false);
         tmp.text = kvp.Key;
         tmp.fontSize = 18;
         tmp.alignment = TextAlignmentOptions.Center;
-        tmp.rectTransform.sizeDelta = rt.sizeDelta;
+        tmp.raycastTarget = false;
+        if (choiceFont != null) tmp.font = choiceFont;
 
-        // Track text object if needed
+        // Auto-size button to text
+        var fitter = buttonObj.AddComponent<ContentSizeFitter>();
+        fitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+        fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+        var layout = buttonObj.AddComponent<HorizontalLayoutGroup>();
+        layout.childAlignment = TextAnchor.MiddleCenter;
+        layout.padding = new RectOffset(10, 10, 5, 5);
+
+        RectTransform rt = buttonObj.GetComponent<RectTransform>();
+        rt.pivot = new UnityEngine.Vector2(0.5f, 0.5f);
+
+        buttonRects.Add(rt);
+
+        // Click listener
+        string choiceCopy = kvp.Key;
+        btn.onClick.AddListener(() => OnChoiceSelected(choiceCopy));
+
         textRenderer.textObjects[kvp.Key] = tmp.gameObject;
-
-        i++;
     }
+
+    // Position buttons evenly based on widths
+    float totalWidth = spacing * (buttonRects.Count - 1);
+    foreach (var rt in buttonRects)
+        totalWidth += rt.rect.width;
+
+    float startX = -totalWidth / 2f;
+
+    foreach (var rt in buttonRects)
+    {
+        float halfWidth = rt.rect.width / 2f;
+        rt.anchoredPosition = new UnityEngine.Vector2(startX + halfWidth, baseY);
+        startX += rt.rect.width + spacing;
+    }
+
     waitingForChoice = true;
     
-}
+
 
     }
 
@@ -114,6 +134,7 @@ public class DialogueManager: MonoBehaviour
 
     void NextNode()
     {
+        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         currentNode.onComplete?.Invoke();
 
         if (currentNode.waitForExternalEvent)

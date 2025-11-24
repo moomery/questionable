@@ -1,6 +1,4 @@
 using System.Threading.Tasks;
-using Microsoft.Unity.VisualStudio.Editor;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.SceneManagement;
@@ -50,11 +48,6 @@ public class levelManager : MonoBehaviour
 
     _loaderCanvas.SetActive(false);
 }
-
-
-
-
-
 
 }
 
