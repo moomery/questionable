@@ -35,45 +35,35 @@ public class TextRenderer : MonoBehaviour
 
     public void SayOnObject(GameObject parent, string id, string text, int size)
     {
-
-        if(textObjects.ContainsKey(id))
-        {
-            UpdateText(id, text);
-            return;
-        }
-
-        GameObject a = new GameObject(id);
-        TextMeshProUGUI t = a.AddComponent<TextMeshProUGUI>();
-
-        a.transform.SetParent(parent.transform, false);
-
-
-
-        RectTransform r = a.GetComponent<RectTransform>();
-        r.pivot = new Vector2(0.5f, 0.5f);
-        r.anchorMin = new Vector2(0.5f, 0.5f);
-        r.anchorMax = new Vector2(0.5f, 0.5f);
-
-// Place exactly at the parent's center
-        r.anchoredPosition = Vector2.zero;
-
-// Center text alignment
-        t.alignment = TextAlignmentOptions.Center;  
-
-        // TODO: Translate w-r-t parent's size.
-        SpriteRenderer s = parent.GetComponent<SpriteRenderer>();
-
-        //int parentOffsetX = PARENT_TEST.transform.
-
-
-
-        t.text = text;
-        t.fontSize = size;
-        t.font = f;
-
-        textObjects.Add(id, a);
-
+    // If already exists, just update text
+    if (textObjects.ContainsKey(id))
+    {
+        UpdateText(id, text);
+        return;
     }
+
+    // Create new object
+    GameObject a = new GameObject(id);
+    TextMeshProUGUI t = a.AddComponent<TextMeshProUGUI>();
+
+    a.transform.SetParent(parent.transform, false);
+
+    RectTransform r = a.GetComponent<RectTransform>();
+    r.pivot = new Vector2(0.5f, 0.5f);
+    r.anchorMin = new Vector2(0.5f, 0.5f);
+    r.anchorMax = new Vector2(0.5f, 0.5f);
+
+    // Center inside parent
+    r.anchoredPosition = Vector2.zero;
+
+    t.text = text;
+    t.fontSize = size;
+    t.font = f;
+    t.alignment = TextAlignmentOptions.Center;
+
+    textObjects.Add(id, a);
+}
+
 
     // Add text at a specific location on the canvas. (x, y) is the top left corner. (w, h) is the size of the bounding box.
     public void InstantiateText(string id, string text, int size, int x, int y, int w, int h)

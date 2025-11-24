@@ -17,4 +17,6 @@ public class DialogueNode
     public string next;
     public Action onComplete;
 
+    public bool waitForExternalEvent = false;
+
 }

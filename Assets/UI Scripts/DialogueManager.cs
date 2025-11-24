@@ -17,10 +17,23 @@ public class DialogueManager: MonoBehaviour
     int lineIndex = 0;
     public bool waitingForChoice = false;
     
+    Dictionary<string, DialogueNode> savedNodes;
+    public static DialogueManager Instance;
 
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
     public void LoadDialogue(Dictionary<string, DialogueNode> data, string start)
     {
         dialogue = data;
+        savedNodes = data;
         currentNode = dialogue[start];
         lineIndex = 0;
      
@@ -40,38 +53,38 @@ public class DialogueManager: MonoBehaviour
 
     void DisplayChoices()
     {
-         int i = 0;
-    float spacingX = 200f; // horizontal space between choices
-    float centerY = 10f;    // vertical position for all choices
+{
+    int totalChoices = currentNode.choices.Count;
+    float spacingX = 5f; // distance between choice objects
+    float centerY = 0f;  // vertical position of all choices
+    int i = 0;
 
     foreach (var kvp in currentNode.choices)
     {
-        // Create the text object
         textRenderer.SayOnObject(choiceParent.gameObject, kvp.Key, kvp.Key, 18);
         GameObject choiceObj = textRenderer.textObjects[kvp.Key];
 
-        // Add BoxCollider2D for clicks
+        // Add a collider if it doesn't exist
         if (choiceObj.GetComponent<BoxCollider2D>() == null)
         {
             var col = choiceObj.AddComponent<BoxCollider2D>();
-            var textMesh = choiceObj.GetComponent<TextMeshProUGUI>();
-            col.size = new UnityEngine.Vector2(textMesh.preferredWidth + 20, textMesh.preferredHeight + 10);
+            var tm = choiceObj.GetComponent<TextMeshPro>();
+            col.size = new UnityEngine.Vector2(tm.preferredWidth + 20, tm.preferredHeight + 10);
         }
 
-        // Position choices horizontally
-        RectTransform rt = choiceObj.GetComponent<RectTransform>();
-        rt.anchorMin = new UnityEngine.Vector2(0.5f, 0.5f);
-        rt.anchorMax = new UnityEngine.Vector2(0.5f, 0.5f);
-        rt.pivot = new UnityEngine.Vector2(0.5f, 0.5f);
-
-        // Calculate horizontal offset: center them around x = 0
-        int totalChoices = currentNode.choices.Count;
-        float startX = -spacingX * (totalChoices - 1) / 2f; // starting x for first choice
-        rt.anchoredPosition = new UnityEngine.Vector2(startX + spacingX * i, centerY);
+        // Position choices horizontally like in your QuizManager
+        UnityEngine.Vector3 pos = new UnityEngine.Vector3(
+            spacingX * (i - (totalChoices - 1) / 2f),
+            centerY,
+            0
+        );
+        choiceObj.transform.localPosition = pos;
 
         i++;
-        }
-        waitingForChoice = true;
+    }
+    waitingForChoice = true;
+}
+
     }
 
     void Choose(string choice)
@@ -93,6 +106,12 @@ public class DialogueManager: MonoBehaviour
     void NextNode()
     {
         currentNode.onComplete?.Invoke();
+
+        if (currentNode.waitForExternalEvent)
+        {
+
+         return;   
+        }
 
         if (currentNode.next != null)
         {
@@ -119,6 +138,13 @@ public class DialogueManager: MonoBehaviour
         NextNode();
         }
     }
+    
+    public void ContinueAfterMiniGame()
+{
+    // Continue from Q4 node
+    LoadDialogue(savedNodes, "Q4");
+}
+
     public void OnChoiceSelected(string choice)
     {
         if (waitingForChoice)
