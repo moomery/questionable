@@ -16,3 +16,4 @@ public class ArrowMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 }
+    
