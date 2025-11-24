@@ -3,7 +3,7 @@ using UnityEngine;
 public class Fartguy : MonoBehaviour
 {
 
-
+    Vector2 target = new Vector2(0, 0);
     float timeElapsed = 0;
     public GameObject pmObj;
     ProjectileManager p;
@@ -21,17 +21,19 @@ public class Fartguy : MonoBehaviour
         p = pmObj.GetComponent<ProjectileManager>();
     }
 
-
+    public void SetTarget(Vector2 t)
+    {
+        this.target = t;
+    }
     void SpawnFly()
     {
 
         // Track to the center of sprite
         SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
         float height = sr.sprite.bounds.size.y;
-        Vector2 newDest = new Vector2 (transform.position.x, transform.position.y + 0.5f*height);
 
 
-        p.CreateFly(new Vector2(transform.position.x, transform.position.y - 35), new Vector2(0, 0), 5);
+        p.CreateFly(new Vector2(transform.position.x, transform.position.y - 35), this.target, 5);
 
     }
 
@@ -44,12 +46,12 @@ public class Fartguy : MonoBehaviour
 
         t.position = new Vector3(90*Mathf.Sin((float)x/12000000), 80 + 23*Mathf.Cos((float)x/5000000 + 4), 0);
         // Spawn fly
-        if(Mathf.Round(timeElapsed*6) % period == 0 && !hasAddedThisSecond)
+        if(Mathf.Round(timeElapsed*12) % period == 0 && !hasAddedThisSecond)
         {
             hasAddedThisSecond = true;
             SpawnFly();
         }
-        else if (Mathf.Round(timeElapsed * 6) % period != 0)
+        else if (Mathf.Round(timeElapsed * 12) % period != 0)
         {
             hasAddedThisSecond = false;
         }
