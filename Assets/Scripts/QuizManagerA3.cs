@@ -195,6 +195,26 @@ public class QuizDialogueA3 : MonoBehaviour
                 {
                     speaker = "Spider",
                     lines = new string[] { "What was the name of the first spider you shot flies with?" },
+                     choices = new Dictionary<string,string>()
+                    {
+                        { "Jerry", "Q8_CORRECT" },
+                        { "Bob", "Q8_WRONG" }
+                    },
+                }
+            },
+            {
+                "Q8_CORRECT", new DialogueNode()
+                {
+                    speaker = "Spider",
+                    lines = new string[] { "Good!" },
+                    next = "Q9"
+                }
+            },
+            {
+                "Q8_WRONG", new DialogueNode()
+                {
+                    speaker = "Spider",
+                    lines = new string[] { "Nope!" },
                     next = "Q9"
                 }
             },
@@ -203,7 +223,11 @@ public class QuizDialogueA3 : MonoBehaviour
                 {
                     speaker = "Spider",
                     lines = new string[] { "Again, how many pixels of hair do I have?" },
-                    next = "Q10"
+                    choices = new Dictionary<string,string>()
+                    {
+                        { "Jerry", "Q9_CORRECT" },
+                        { "Bob", "Q9_WRONG" }
+                    },
                 }
             },
             {
