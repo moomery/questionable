@@ -4,6 +4,8 @@ public class Fartguy : MonoBehaviour
 {
 
     public GameObject healthBar;
+    public GameObject PSA;
+    TextRenderer psa;
     TextRenderer hb;
     string bossFullHealthString = "BOSS HEALTH: XXXXXXXXXXXXXXXXXXXXX";
 
@@ -27,11 +29,18 @@ public class Fartguy : MonoBehaviour
 
         p = pmObj.GetComponent<ProjectileManager>();
         hb = healthBar.GetComponent<TextRenderer>();
+        psa = PSA.GetComponent<TextRenderer>();
     }
 
     public void DecrementHealth()
     {
         bossCurrentHealth -= 1;
+
+        if(bossCurrentHealth == 0)
+        {
+            psa.Say("You Win!");
+            Destroy(gameObject);
+        }
 
         string bar = "";
         for(int i = 0; i < bossFullHealthString.Length *  (bossCurrentHealth/bossMaxHealth); i++)
