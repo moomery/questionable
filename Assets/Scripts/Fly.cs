@@ -8,6 +8,8 @@ public class Fly : MonoBehaviour
     HeartManager hm;
     public float fac = 50;
 
+    float timeSinceSpawned;
+
     public float angle;
     public float power;
     public Vector2 location;
@@ -26,6 +28,13 @@ public class Fly : MonoBehaviour
         this.location += new Vector2(Time.deltaTime*Mathf.Cos(angle)*fac, Time.deltaTime*Mathf.Sin(angle)*fac);
         this.transform.position = location;
 
+        timeSinceSpawned += Time.deltaTime;
+
+
+        if(timeSinceSpawned > 10)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D c)
