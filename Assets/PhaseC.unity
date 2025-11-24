@@ -1626,7 +1626,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'BOSS HEALTH: XXXXXXXXXXXXXXXXXXXXX'
+  m_text: 'BOSS HEALTH: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6f04702d0f94c47299f35c6e4632455d, type: 2}
   m_sharedMaterial: {fileID: 357477168780807921, guid: 6f04702d0f94c47299f35c6e4632455d, type: 2}
@@ -1653,8 +1653,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 11
+  m_fontSizeBase: 11
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
