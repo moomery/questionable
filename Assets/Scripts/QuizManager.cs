@@ -78,10 +78,14 @@ public class QuizDialogue : MonoBehaviour
                     waitForExternalEvent = true,
                     onComplete = () =>
                     {
+                        var spiderWoman = GameObject.Find("boss_0");
+                        if (spiderWoman != null)
+                        Destroy(spiderWoman);
                         // Load PhaseB additively
                         {
                         if (!SceneManager.GetSceneByName("PhaseB").isLoaded)
                         SceneManager.LoadScene("PhaseB", LoadSceneMode.Additive);
+                        
                         };
                         Debug.Log("Number of scenes:" + SceneManager.sceneCount);
                     }
