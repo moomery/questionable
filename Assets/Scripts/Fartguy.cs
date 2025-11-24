@@ -3,14 +3,15 @@ using UnityEngine;
 public class Fartguy : MonoBehaviour
 {
 
+    bool hasAddedHorde = false;
     public GameObject healthBar;
     public GameObject PSA;
     TextRenderer psa;
     TextRenderer hb;
     string bossFullHealthString = "BOSS HEALTH: XXXXXXXXXXXXXXXXXXXXX";
 
-    float bossMaxHealth = 30f;
-    float bossCurrentHealth = 30f;
+    float bossMaxHealth = 40f;
+    float bossCurrentHealth = 40f;
 
     Vector2 target = new Vector2(0, 0);
     float timeElapsed = 0;
@@ -68,6 +69,21 @@ public class Fartguy : MonoBehaviour
 
     }
 
+    void LegacySpawnFly()
+    {
+        float r = Random.Range(0f, 3.14f);
+        float amplitude = 120;
+
+        // Track to the center of sprite
+        SpriteRenderer sr = this.GetComponent<SpriteRenderer>();
+        float height = sr.sprite.bounds.size.y;
+        Vector2 newDest = new Vector2 (transform.position.x, transform.position.y + 0.5f*height);
+
+
+        p.CreateFly(new Vector2(Mathf.Cos(r)*amplitude, Mathf.Sin(r)*amplitude), this.target, 5);
+
+    }
+
     void Burst()
     {
         // BURST!!!
@@ -90,11 +106,16 @@ public class Fartguy : MonoBehaviour
 
         if(timeElapsed % phaseDuration < 6)
         {
+            hasAddedHorde = false;
             Burst();        
         }
-        else
+        else if(!hasAddedHorde)
         {
-            // Nothin'!
+            hasAddedHorde = true;
+            LegacySpawnFly();
+            LegacySpawnFly();
+            LegacySpawnFly();
+            
         }
 
         t.position = new Vector3(90*Mathf.Sin((float)x/12000000), 80 + 23*Mathf.Cos((float)x/5000000 + 4), 0);
