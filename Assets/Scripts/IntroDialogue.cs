@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,7 @@ public class IntroDialogue : MonoBehaviour
     public DialogueManager dialogueManager;
     public GameObject spiderWomanPrefab;
     public Transform spiderSpawn;
+    GameObject spawnedSpider;
     void Start()
     {
         
@@ -37,6 +39,7 @@ public class IntroDialogue : MonoBehaviour
             
             {
                     "Spider_1", new DialogueNode()
+    
                 {
                     speaker = "Spider Woman",
                         lines = new string[]
@@ -75,20 +78,37 @@ public class IntroDialogue : MonoBehaviour
                     },
                     onComplete = () =>
                     {
+                        if (spawnedSpider != null)
+                        Destroy(spawnedSpider);
                         SceneManager.LoadScene("PhaseA");
                     }
                 }
             }
         };
         dialogueManager.LoadDialogue(d, "Player_1");
-        StartCoroutine(SpawnSpiderWoman(dialogueManager));
+        StartCoroutine(SpawnSpiderWoman());
     }
-    IEnumerator SpawnSpiderWoman(DialogueManager manager)
+    IEnumerator SpawnSpiderWoman()
     {
         while ( true )
         {
-            if(manager.currentNode != null && manager.currentNode.speaker == "Spider Woman"){
-            yield break;
+            if(dialogueManager.currentNode != null && dialogueManager.currentNode.speaker == "Spider Woman"){
+            if (spawnedSpider == null)
+                {
+                    spawnedSpider = Instantiate(spiderWomanPrefab, spiderSpawn.position, Quaternion.identity);
+                    UnityEngine.Vector3 pos = spawnedSpider.transform.position;
+                    pos.y = -70.5f;
+                    pos.x = -20.5f;
+                    spawnedSpider.transform.position = pos;
+
+                    var sr = spawnedSpider.GetComponent<SpriteRenderer>();
+                    if (sr != null)
+                    {
+                        sr.sortingLayerName = "Default";
+                        sr.sortingOrder = -200;
+                    }
+                    yield break;
+                }
             }
             yield return null;
         }

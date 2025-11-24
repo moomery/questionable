@@ -65,7 +65,7 @@ public class DialogueManager: MonoBehaviour
 
         var btn = buttonObj.AddComponent<UnityEngine.UI.Button>();
         var img = buttonObj.AddComponent<UnityEngine.UI.Image>();
-        img.color = new Color(1f, 1f, 1f, 0.1f);
+        img.color = new Color(0f, 0f, 0f, 0.3f);
 
         TextMeshProUGUI tmp = new GameObject("Text").AddComponent<TextMeshProUGUI>();
         tmp.transform.SetParent(buttonObj.transform, false);
