@@ -179,10 +179,19 @@ public class QuizDialogueA2 : MonoBehaviour
                 "Q7", new DialogueNode()
                 {
                     speaker = "Spider",
-                    lines = new string[] { "If you win this time maybe you can defeat Fart, the mighty!" },
+                    lines = new string[] { "If you win this time maybe you can defeat Fart, the mighty! Btw this time its Bob" },
                     waitForExternalEvent = true,
                     onComplete = () =>
+                    
                     {
+                         var spiderWoman = GameObject.Find("boss_0");
+                        if (spiderWoman != null)
+                        Destroy(spiderWoman);
+
+                        var audioObj = GameObject.Find("MusicPhaseA2");
+                        if (audioObj != null)
+                        Destroy(audioObj);
+                        
                         // Load PhaseB additively again
                         SceneManager.LoadSceneAsync("PhaseB2");
                     }

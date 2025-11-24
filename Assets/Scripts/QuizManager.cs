@@ -74,13 +74,18 @@ public class QuizDialogue : MonoBehaviour
                 "Q3", new DialogueNode()
                 {
                     speaker = "Spider",
-                    lines = new string[] { "Time for a mini-game!" },
+                    lines = new string[] { "Time for a mini-game! You'll be shooting with Jerry, remember that." },
                     waitForExternalEvent = true,
                     onComplete = () =>
                     {
                         var spiderWoman = GameObject.Find("boss_0");
                         if (spiderWoman != null)
                         Destroy(spiderWoman);
+
+                        var audioObj = GameObject.Find("MusicPhaseA");
+                        if (audioObj != null)
+                        Destroy(audioObj);
+                        
                         // Load PhaseB additively
                         {
                         if (!SceneManager.GetSceneByName("PhaseB").isLoaded)

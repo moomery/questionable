@@ -253,6 +253,14 @@ public class QuizDialogueA3 : MonoBehaviour
                     lines = new string[] { "Oh No! Fart is here to kill us! Save us!" },
                     onComplete = () =>
                     {   // Victory
+                     var spiderWoman = GameObject.Find("boss_0");
+                        if (spiderWoman != null)
+                        Destroy(spiderWoman);
+
+                        var audioObj = GameObject.Find("MusicPhaseA3");
+                        if (audioObj != null)
+                        Destroy(audioObj);
+                        
                         SceneManager.LoadScene("PhaseC");
                     }
                 }
