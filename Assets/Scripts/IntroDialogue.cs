@@ -17,7 +17,8 @@ public class IntroDialogue : MonoBehaviour
                         lines = new string[]
                     {
                             "Where... Am I?",
-                            "I remeber I was walking home from work when suddenly this dark shape swooped down on top of me.",
+                            "I remeber I was walking home from work.", 
+                            "and then I was suddenly hit by something above me.",
                             "I'm not able to move my arms or legs, I'm tied up!",
                             "I thought I remembered a voice before I passed out but who was it?"
                     },
