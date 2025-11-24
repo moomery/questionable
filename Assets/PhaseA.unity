@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   textRenderer: {fileID: 1812756798}
+  state: NEEDS_QUESTION
   SelectorBody: {fileID: 1282255355}
 --- !u!4 &169920443
 Transform:
@@ -735,7 +736,6 @@ MonoBehaviour:
   center: {x: 0, y: -4}
   radius: 5
   answerAmplitude: 2
-  answerCount: 2
   snapSpeed: 12
   targetAngle: 0
   answerPrefab: {fileID: 7328017190748210440, guid: 0e59a79b7022049d5976f2312c895b98, type: 3}
@@ -1221,6 +1221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a7cf0d441ca424aba201e2717541d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectionManager
+  g: {fileID: 169920442}
 --- !u!4 &1839310325
 Transform:
   m_ObjectHideFlags: 0
