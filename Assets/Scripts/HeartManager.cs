@@ -17,6 +17,7 @@ public class HeartManager : MonoBehaviour
         {
             t.Say("YOU LOSE!"); 
             if(version == 0) SceneManager.LoadScene("Loss Scene");
+            else if (version == 3) SceneManager.LoadScene("Loss3");
             else SceneManager.LoadScene("Loss2");
             
             return;
