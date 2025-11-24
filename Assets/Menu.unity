@@ -1545,9 +1545,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 67b7bbd2852aa440284a26e278659127, type: 3}
-        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
-        m_MethodName: set_name
+      - m_Target: {fileID: 2002289631}
+        m_TargetAssemblyTypeName: ChangeSceneButton, Assembly-CSharp
+        m_MethodName: ChangeScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1604,7 +1604,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 936050912}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67b7bbd2852aa440284a26e278659127, type: 3}
+  m_Script: {fileID: 11500000, guid: 9db134ad88c7f49a197a20ae63aa2c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChangeSceneButton
 --- !u!1 &996016882
@@ -3170,7 +3170,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2002289630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67b7bbd2852aa440284a26e278659127, type: 3}
+  m_Script: {fileID: 11500000, guid: 9db134ad88c7f49a197a20ae63aa2c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
 --- !u!4 &2002289632
@@ -3429,5 +3429,5 @@ SceneRoots:
   - {fileID: 461070669}
   - {fileID: 1463248885}
   - {fileID: 2075196812}
-  - {fileID: 1769399196}
   - {fileID: 2002289632}
+  - {fileID: 1769399196}
