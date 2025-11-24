@@ -1719,7 +1719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TextRenderer
   f: {fileID: 11400000, guid: 6f04702d0f94c47299f35c6e4632455d, type: 2}
   DEFAULT_TEXT_OBJECT: {fileID: 2118980299}
-  DEFAULT_FONT_SIZE: 14
+  DEFAULT_FONT_SIZE: 11
   CURRENT_CANVAS: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
