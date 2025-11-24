@@ -15,6 +15,7 @@ public class ProjectileManager : MonoBehaviour
         p.angle = Mathf.Deg2Rad*(angle);
         p.location = location;
         p.power = 1 + power;
+        p.first = false;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
