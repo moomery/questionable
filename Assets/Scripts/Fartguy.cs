@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Fartguy : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class Fartguy : MonoBehaviour
         {
             psa.Say("You Win!");
             Destroy(gameObject);
+            SceneManager.LoadScene("Win Scene");
         }
 
         string bar = "";
