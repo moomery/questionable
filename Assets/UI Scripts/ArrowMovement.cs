@@ -18,8 +18,6 @@ public class ArrowMovement : MonoBehaviour
 
     void Start()
     {
-        HeartManager hm = h.GetComponent<HeartManager>();
-        hm.UpdateHealth(3);
 
         pm = p.GetComponent<ProjectileManager>();
     }

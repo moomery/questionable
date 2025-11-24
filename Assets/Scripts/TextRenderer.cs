@@ -9,7 +9,6 @@ public class TextRenderer : MonoBehaviour
     public int DEFAULT_FONT_SIZE = 18;
     public Dictionary<string, GameObject> textObjects = new Dictionary<string, GameObject>();
 
-    public GameObject PARENT_TEST;
 
     public Canvas CURRENT_CANVAS;
 
@@ -19,16 +18,6 @@ public class TextRenderer : MonoBehaviour
 
         DEFAULT_TEXT_OBJECT.fontSize = DEFAULT_FONT_SIZE;
         DEFAULT_TEXT_OBJECT.font = f;
-
-        Say("default text default text default text default text default text default text ");
-        InstantiateText("mybox", "Test.", 0, 0, 0);
-        InstantiateText("mybox2", "Another test.", 18, 0, 0, 100, 50);
-
-        //SayOnObject(PARENT_TEST, "squaretext", "HEY I'M ON A SQUARE!!!", 18);
-
-        DeleteText("mybox");
-        DeleteText("mybox2");
-        // UpdateText("squaretext", ".!");
 
     }
 

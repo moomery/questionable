@@ -27,4 +27,19 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+        void OnCollisionEnter2D(Collision2D c)
+    {
+
+        if(c.gameObject.name == "fly_0(Clone)")
+        {
+            Destroy(c.gameObject);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log(c.gameObject.name);
+        }
+    }
+
 }

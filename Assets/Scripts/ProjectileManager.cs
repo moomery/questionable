@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ProjectileManager : MonoBehaviour
 {
@@ -6,8 +7,8 @@ public class ProjectileManager : MonoBehaviour
     public GameObject projectilePrefab;
     public GameObject flyPrefab;
 
-    public GameObject[] projectiles;
-
+    public List<GameObject> projectiles = new List<GameObject>();
+    public List<GameObject> flies = new List<GameObject>();
 
     public void CreateFly(Vector2 location, Vector2 destination, float speed)
     {
@@ -17,6 +18,7 @@ public class ProjectileManager : MonoBehaviour
         f.location = location;
         f.power = speed;
         f.first = false;
+        flies.Add(obj);
     }
 
     public void CreateProjectile(Vector2 location, float angle, float power)
@@ -27,6 +29,7 @@ public class ProjectileManager : MonoBehaviour
         p.location = location;
         p.power = 1 + power;
         p.first = false;
+        projectiles.Add(obj);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,6 +41,14 @@ public class ProjectileManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        // foreach(GameObject g in projectiles)
+        // {
+        //     Collider collider = g.GetComponent<Collider>();
+        //     foreach(GameObject h in flies)
+        //     {
+        //         Collider targetCandidate = g.GetComponent<Collider>();
+        //     }
+        // }
     }
 }
