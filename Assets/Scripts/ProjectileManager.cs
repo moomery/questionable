@@ -12,7 +12,7 @@ public class ProjectileManager : MonoBehaviour
     {
         GameObject obj = Instantiate(projectilePrefab, location, UnityEngine.Quaternion.identity);
         Projectile p = obj.GetComponent<Projectile>();
-        p.angle = Mathf.Deg2Rad*(angle + 90);
+        p.angle = Mathf.Deg2Rad*(angle);
         p.location = location;
         p.power = 1 + power;
     }
