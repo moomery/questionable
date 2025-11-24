@@ -68,7 +68,7 @@ public class ArrowMovement : MonoBehaviour
         if(Mathf.Round(timeElapsed) % period == 0 && !hasAddedThisSecond)
         {
             hasAddedThisSecond = true;
-            float r = Random.Range(0f, 180f);
+            float r = Random.Range(0f, 3.14f);
             float amplitude = 120;
 
             // Track to the center of sprite
