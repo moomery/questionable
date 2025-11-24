@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -6,9 +7,12 @@ using UnityEngine.SceneManagement;
 public class IntroDialogue : MonoBehaviour
 {
     public DialogueManager dialogueManager;
+    public GameObject spiderWomanPrefab;
+    public Transform spiderSpawn;
     void Start()
     {
         var d = new Dictionary<string,DialogueNode>()
+  
         {
             {
                     "Player_1", new DialogueNode()
@@ -25,6 +29,7 @@ public class IntroDialogue : MonoBehaviour
                         next = "Spider_1"
                 }
             },
+            
             {
                     "Spider_1", new DialogueNode()
                 {
@@ -70,6 +75,20 @@ public class IntroDialogue : MonoBehaviour
                 }
             }
         };
-    dialogueManager.LoadDialogue(d, "Player_1");
+        dialogueManager.LoadDialogue(d, "Player_1");
+        StartCoroutine(SpawnSpiderWoman(dialogueManager));
+    }
+    IEnumerator SpawnSpiderWoman(DialogueManager manager)
+    {
+        while ( true )
+        {
+            if(manager.currentNode != null && manager.currentNode.speaker == "Spider Woman"){
+            yield break;
+            }
+            yield return null;
+        }
+        
+        
+
     }
 }
