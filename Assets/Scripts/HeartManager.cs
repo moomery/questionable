@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 public class HeartManager : MonoBehaviour
 {
+    public int version = 0;
     public GameObject heartPrefab;
     int numHearts = 3;
     public List<GameObject> hearts;
@@ -15,7 +16,9 @@ public class HeartManager : MonoBehaviour
         if(hearts.Count == 0)
         {
             t.Say("YOU LOSE!"); 
-            SceneManager.LoadScene("Loss Scene");
+            if(version == 0) SceneManager.LoadScene("Loss Scene");
+            else SceneManager.LoadScene("Loss2");
+            
             return;
         }
 

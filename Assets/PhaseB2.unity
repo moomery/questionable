@@ -603,6 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f35a0629ae14548abb710338a67dcb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  version: 2
   heartPrefab: {fileID: 830941926}
   hearts: []
   c: {fileID: 2069788106}
