@@ -17,6 +17,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/PhaseB.unity
     guid: 7fb09153acef1485b9b9155a2a62ce64
+  - enabled: 1
+    path: Assets/PhaseA2.unity
+    guid: 5769b18e4d9a84fe79c20e5bbc8d19a7
+  - enabled: 1
+    path: Assets/PhaseB2.unity
+    guid: 6d25576a6db424891b28f907d7e21fe8
+  - enabled: 1
+    path: Assets/PhaseC.unity
+    guid: dc0dbc49bbe6b4147b298b10bb53a611
+  - enabled: 1
+    path: Assets/PhaseA3.unity
+    guid: 7019f6bbfb95e45fbbdff4c310dbbbdb
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

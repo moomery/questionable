@@ -113,7 +113,7 @@ public class QuizDialogueA3 : MonoBehaviour
                 "Q4_WRONG", new DialogueNode()
                 {
                     speaker = "Spider",
-                    lines = new string[] { "Wrong!" },
+                    lines = new string[] { "Wrong! This is just dumb, I seriously thought no one would pick this." },
                     next = "Q5"
                 }
             },
@@ -161,7 +161,7 @@ public class QuizDialogueA3 : MonoBehaviour
                 "Q6_CORRECT", new DialogueNode()
                 {
                     speaker = "Spider",
-                    lines = new string[] { "Good!" },
+                    lines = new string[] { "Good! It's kinda weird that you know that" },
                     next = "Q7"
                 }
             },
@@ -169,7 +169,7 @@ public class QuizDialogueA3 : MonoBehaviour
                 "Q6_WRONG", new DialogueNode()
                 {
                     speaker = "Spider",
-                    lines = new string[] { "Nope!" },
+                    lines = new string[] { "Nope! Idiot!" },
                     next = "Q7"
                 }
             },
@@ -179,7 +179,7 @@ public class QuizDialogueA3 : MonoBehaviour
                 "Q7", new DialogueNode()
                 {
                     speaker = "Spider",
-                    lines = new string[] { "Time for another mini-game!" },
+                    lines = new string[] { "If you win this time maybe you can defeat Fart, the mighty!" },
                     waitForExternalEvent = true,
                     onComplete = () =>
                     {
@@ -206,7 +206,7 @@ public class QuizDialogueA3 : MonoBehaviour
                 "Q8_CORRECT", new DialogueNode()
                 {
                     speaker = "Spider",
-                    lines = new string[] { "Good!" },
+                    lines = new string[] { "Good! You have a soul" },
                     next = "Q9"
                 }
             },
@@ -214,7 +214,7 @@ public class QuizDialogueA3 : MonoBehaviour
                 "Q8_WRONG", new DialogueNode()
                 {
                     speaker = "Spider",
-                    lines = new string[] { "Nope!" },
+                    lines = new string[] { "Nope! How rude of you to not remember him after he so valiantly died after that mini game!" },
                     next = "Q9"
                 }
             },
@@ -222,22 +222,38 @@ public class QuizDialogueA3 : MonoBehaviour
                 "Q9", new DialogueNode()
                 {
                     speaker = "Spider",
-                    lines = new string[] { "Again, how many pixels of hair do I have?" },
+                    lines = new string[] { "What's the name of the big scary monster that lives further in the cave?" },
                     choices = new Dictionary<string,string>()
                     {
-                        { "Jerry", "Q9_CORRECT" },
-                        { "Bob", "Q9_WRONG" }
+                        { "Fart", "Q9_CORRECT" },
+                        { "Billy", "Q9_WRONG" }
                     },
+                }
+            },
+            {
+                "Q9_CORRECT", new DialogueNode()
+                {
+                    speaker = "Spider",
+                    lines = new string[] { "Good!" },
+                    next = "Q10"
+                }
+            },
+            {
+                "Q9_WRONG", new DialogueNode()
+                {
+                    speaker = "Spider",
+                    lines = new string[] { "Nope!" },
+                    next = "Q10"
                 }
             },
             {
                 "Q10", new DialogueNode()
                 {
                     speaker = "Spider",
-                    lines = new string[] { "Final Question: What kind of spider am I?" },
+                    lines = new string[] { "Oh No! Fart is here to kill us! Save us!" },
                     onComplete = () =>
                     {   // Victory
-                        dialogueManager.textRenderer.Say("You Win!");
+                        SceneManager.LoadScene("PhaseC");
                     }
                 }
             }

@@ -113,7 +113,7 @@ public class QuizDialogueA2 : MonoBehaviour
                 "Q4_WRONG", new DialogueNode()
                 {
                     speaker = "Spider",
-                    lines = new string[] { "Wrong!" },
+                    lines = new string[] { "Wrong! This is just dumb, I seriously thought no one would pick this." },
                     next = "Q5"
                 }
             },
@@ -121,11 +121,11 @@ public class QuizDialogueA2 : MonoBehaviour
                 "Q5", new DialogueNode()
                 {
                     speaker = "Spider",
-                    lines = new string[] { "What is the most venomous spider on the planet? " },
+                    lines = new string[] { "What kind of spider am I? " },
                     choices = new Dictionary<string,string>()
                     {
-                        { "Atrax robustus", "Q5_CORRECT" },
-                        { "Latrodectus mactans", "Q5_WRONG" }
+                        { "Cute", "Q5_CORRECT" },
+                        { "Black Widow", "Q5_WRONG" }
                     }
                 }
             },
@@ -133,7 +133,7 @@ public class QuizDialogueA2 : MonoBehaviour
                 "Q5_CORRECT", new DialogueNode()
                 {
                     speaker = "Spider",
-                    lines = new string[] { "Correct!" },
+                    lines = new string[] { "That's... really?" },
                     next = "Q6"
                 }
             },
@@ -141,7 +141,7 @@ public class QuizDialogueA2 : MonoBehaviour
                 "Q5_WRONG", new DialogueNode()
                 {
                     speaker = "Spider",
-                    lines = new string[] { "Incorrect!" },
+                    lines = new string[] { "Incorrect! This is just a tatto dummy." },
                     next = "Q6"
                 }
             },
@@ -161,7 +161,7 @@ public class QuizDialogueA2 : MonoBehaviour
                 "Q6_CORRECT", new DialogueNode()
                 {
                     speaker = "Spider",
-                    lines = new string[] { "Good!" },
+                    lines = new string[] { "Good!It's kinda weird that you know that" },
                     next = "Q7"
                 }
             },
@@ -169,7 +169,7 @@ public class QuizDialogueA2 : MonoBehaviour
                 "Q6_WRONG", new DialogueNode()
                 {
                     speaker = "Spider",
-                    lines = new string[] { "Nope!" },
+                    lines = new string[] { "Nope! Idiot!" },
                     next = "Q7"
                 }
             },
@@ -179,12 +179,12 @@ public class QuizDialogueA2 : MonoBehaviour
                 "Q7", new DialogueNode()
                 {
                     speaker = "Spider",
-                    lines = new string[] { "Time for another mini-game!" },
+                    lines = new string[] { "If you win this time maybe you can defeat Fart, the mighty!" },
                     waitForExternalEvent = true,
                     onComplete = () =>
                     {
                         // Load PhaseB additively again
-                        SceneManager.LoadSceneAsync("PhaseB");
+                        SceneManager.LoadSceneAsync("PhaseB2");
                     }
                 }
             },
