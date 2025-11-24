@@ -467,7 +467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TextRenderer
   f: {fileID: 11400000, guid: 6f04702d0f94c47299f35c6e4632455d, type: 2}
   DEFAULT_TEXT_OBJECT: {fileID: 583846855}
-  DEFAULT_FONT_SIZE: 16
+  DEFAULT_FONT_SIZE: 14
   CURRENT_CANVAS: {fileID: 673092990}
 --- !u!224 &583846854
 RectTransform:

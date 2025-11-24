@@ -193,7 +193,7 @@ public class QuizDialogueA3 : MonoBehaviour
             {
                 "Q8", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "What was the name of the first spider you shot flies with?" },
                      choices = new Dictionary<string,string>()
                     {
@@ -205,7 +205,7 @@ public class QuizDialogueA3 : MonoBehaviour
             {
                 "Q8_CORRECT", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "Good! You have a soul" },
                     next = "Q9"
                 }
@@ -213,7 +213,7 @@ public class QuizDialogueA3 : MonoBehaviour
             {
                 "Q8_WRONG", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "Nope! How rude of you to not remember him after he so valiantly died after that mini game!" },
                     next = "Q9"
                 }
@@ -221,7 +221,7 @@ public class QuizDialogueA3 : MonoBehaviour
             {
                 "Q9", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "What's the name of the big scary monster that lives further in the cave?" },
                     choices = new Dictionary<string,string>()
                     {
@@ -233,7 +233,7 @@ public class QuizDialogueA3 : MonoBehaviour
             {
                 "Q9_CORRECT", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "Good!" },
                     next = "Q10"
                 }
@@ -241,7 +241,7 @@ public class QuizDialogueA3 : MonoBehaviour
             {
                 "Q9_WRONG", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "Nope!" },
                     next = "Q10"
                 }
@@ -249,7 +249,7 @@ public class QuizDialogueA3 : MonoBehaviour
             {
                 "Q10", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "Oh No! Fart is here to kill us! Save us!" },
                     onComplete = () =>
                     {   // Victory

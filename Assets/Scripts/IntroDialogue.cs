@@ -25,8 +25,7 @@ public class IntroDialogue : MonoBehaviour
                         "Where... Am I?",
                         "I remember I was walking home from work.", 
                         "and then I was suddenly hit by something above me.",
-                        "I remember I was walking home from work when suddenly this dark shape swooped down on top of me.",
-                        "I'm not able to move my arms or legs, I'm tied up!",
+                        "I can't move my arms or legs, I'm tied up!",
                         "I thought I remembered a voice before I passed out but who was it?"
                     },
                     next = "Spider_1"
@@ -35,7 +34,7 @@ public class IntroDialogue : MonoBehaviour
             {
                 "Spider_1", new DialogueNode()
                 {
-                    speaker = "Spider Woman",
+                    speaker = "Rachne",
                     lines = new string[]
                     {
                         "You're finally awake.",
@@ -52,7 +51,7 @@ public class IntroDialogue : MonoBehaviour
             {
                 "SPIDER_FORCE", new DialogueNode()
                 {
-                    speaker = "Spider Woman",
+                    speaker = "Rachne",
                     lines = new string[]
                     {
                         "Oh, that wasn't actually a choice.",
@@ -65,7 +64,7 @@ public class IntroDialogue : MonoBehaviour
             {
                 "SPIDER_FINAL", new DialogueNode()
                 {
-                    speaker = "Spider Woman",
+                    speaker = "Rachne",
                     lines = new string[]
                     {
                         "Uhhh...",
@@ -91,7 +90,7 @@ public class IntroDialogue : MonoBehaviour
     {
         while (true)
         {
-            if (dialogueManager.currentNode != null && dialogueManager.currentNode.speaker == "Spider Woman")
+            if (dialogueManager.currentNode != null && dialogueManager.currentNode.speaker == "Rachne")
             {
                 if (spiderWoman != null && !spiderWoman.activeSelf)
                 {

@@ -92,7 +92,7 @@ public class QuizDialogueA2 : MonoBehaviour
             {
                 "Q4", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "What are baby spiders called?" },
                     choices = new Dictionary<string,string>()
                     {
@@ -104,7 +104,7 @@ public class QuizDialogueA2 : MonoBehaviour
             {
                 "Q4_CORRECT", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "Correct!" },
                     next = "Q5"
                 }
@@ -112,7 +112,7 @@ public class QuizDialogueA2 : MonoBehaviour
             {
                 "Q4_WRONG", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "Wrong! This is just dumb, I seriously thought no one would pick this." },
                     next = "Q5"
                 }
@@ -120,7 +120,7 @@ public class QuizDialogueA2 : MonoBehaviour
             {
                 "Q5", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "What kind of spider am I? " },
                     choices = new Dictionary<string,string>()
                     {
@@ -132,7 +132,7 @@ public class QuizDialogueA2 : MonoBehaviour
             {
                 "Q5_CORRECT", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "That's... really?" },
                     next = "Q6"
                 }
@@ -140,15 +140,15 @@ public class QuizDialogueA2 : MonoBehaviour
             {
                 "Q5_WRONG", new DialogueNode()
                 {
-                    speaker = "Spider",
-                    lines = new string[] { "Incorrect! This is just a tatto dummy." },
+                    speaker = "Rachne",
+                    lines = new string[] { "Incorrect! This is just a tattoo dummy." },
                     next = "Q6"
                 }
             },
             {
                 "Q6", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "What are the 'hairs' on many species of spider called?" },
                     choices = new Dictionary<string,string>()
                     {
@@ -160,15 +160,15 @@ public class QuizDialogueA2 : MonoBehaviour
             {
                 "Q6_CORRECT", new DialogueNode()
                 {
-                    speaker = "Spider",
-                    lines = new string[] { "Good!It's kinda weird that you know that" },
+                    speaker = "Rachne",
+                    lines = new string[] { "Good! It's kinda weird that you know that" },
                     next = "Q7"
                 }
             },
             {
                 "Q6_WRONG", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "Nope! Idiot!" },
                     next = "Q7"
                 }
@@ -178,7 +178,7 @@ public class QuizDialogueA2 : MonoBehaviour
             {
                 "Q7", new DialogueNode()
                 {
-                    speaker = "Spider",
+                    speaker = "Rachne",
                     lines = new string[] { "If you win this time maybe you can defeat Fart, the mighty! Btw this time its Bob" },
                     waitForExternalEvent = true,
                     onComplete = () =>
